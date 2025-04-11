@@ -1,12 +1,9 @@
 <?php
 $slides = get_option('neuron_option')['home_slider'] ?? [];
-echo '<pre>',print_r($slides), '</pre>'
 ?>
 
 
 <!-- ::::::::::::::::::::: start slider section:::::::::::::::::::::::::: -->
-
-
 <section class="slider-area">
     <?php if (!empty($slides)) :
         ?>

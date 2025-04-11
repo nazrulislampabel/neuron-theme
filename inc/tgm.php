@@ -68,6 +68,11 @@ function neuron_register_required_plugins() {
             'slug'        => 'cmb2',
             'required' => false,
         ),
+        array(
+            'name'        => 'CMB2',
+            'slug'        => 'cmb2',
+            'required' => false,
+        ),
 
 	);
 	$config = array(

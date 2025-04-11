@@ -2,9 +2,11 @@
 /**
  * Template Name: Pricing Table
  */
+
+$intros = get_post_meta( get_the_ID(), 'home_intro_box', true );
 ?>
-<!-- ::::::::::::::::::::: start intro section:::::::::::::::::::::::::: -->
-<section class="section-padding darker-bg">
+<!-- ::::::::::::::::::::: start intro intro:::::::::::::::::::::::::: -->
+<intro class="intro-padding darker-bg">
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8">
@@ -28,18 +30,29 @@
                 </div>
             </div>
         </div>
-        <div>
-            <?php
-            $repeater_data = get_option( 'neuron_option' )['my_repeater_field'] ??[];
-            echo '<pre>',print_r($repeater_data), '</pre>';
-            if ( ! empty( $repeater_data ) ) {
-                foreach ( $repeater_data as $item ) {
-                    echo 'Name: ' . esc_html( $item['repeater_name'] ) . '<br>';
-                    echo 'URL: ' . esc_url( $item['repeater_url'] ) . '<br>';
+        <?php
+        $sections = get_post_meta( get_the_ID(), 'page_sections', true );
+
+        if ( ! empty( $sections ) ) {
+            foreach ( $sections as $section ) {
+                echo '<div class="custom-page-section">';
+
+                if ( ! empty( $section['section_image'] ) ) {
+                    echo '<img src="' . esc_url( $section['section_image'] ) . '" alt="">';
                 }
+
+                if ( ! empty( $section['section_title'] ) ) {
+                    echo '<h2>' . esc_html( $section['section_title'] ) . '</h2>';
+                }
+
+                if ( ! empty( $section['section_content'] ) ) {
+                    echo '<p>' . esc_html( $section['section_content'] ) . '</p>';
+                }
+
+                echo '</div>';
             }
-            ?>
-        </div>
+        }
+        ?>
     </div>
-</section><!-- intro area end -->
+</intro><!-- intro area end -->
 

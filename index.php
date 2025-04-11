@@ -1,7 +1,8 @@
 <?php get_header();?>
 <?php get_template_part("template-parts/blog-home/featured");
 get_template_part("template-parts/blog-home/intro");
-?><!-- ::::::::::::::::::::: start block content area:::::::::::::::::::::::::: -->
+?>
+    <!-- ::::::::::::::::::::: start block content area:::::::::::::::::::::::::: -->
 <section class="section-padding">
     <div class="container">
         <div class="row">
