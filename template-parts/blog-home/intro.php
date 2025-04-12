@@ -4,6 +4,7 @@
  */
 
 $intros = get_post_meta( get_the_ID(), 'home_intro_box', true );
+$options = get_option( 'theme_options' );
 ?>
 <!-- ::::::::::::::::::::: start intro intro:::::::::::::::::::::::::: -->
 <intro class="intro-padding darker-bg">
@@ -19,20 +20,39 @@ $intros = get_post_meta( get_the_ID(), 'home_intro_box', true );
             </div>
         </div>
         <div class="row">
-            <!-- single intro -->
+            <?php if (!empty($options['intro_section'])):?>
+               <?php foreach ($options['intro_section'] as $intro):
+                    ?>
+                    <!-- single intro -->
             <div class="col-md-4">
                 <div class="single-intro">
-                    <div class="intro-img intro-bg1" style="background-image: url(<?php echo get_template_directory_uri(); ?>/assets/img/intro/1.jpg)"></div>
+                    <div class="intro-img intro-bg1" style="background-image: url(<?php echo esc_url( $intro['image'] ) ?>"></div>
                     <div class="intro-details text-center">
-                        <h3>About Business</h3>
-                        <p>Seamlessly envisioneer extensive interfaces and back wardcompatible applications. Proactively promote timely best.</p>
+                        <h3><?php echo esc_html($intro['title'])?></h3>
+                        <p><?php echo esc_html($intro['content'])?></p>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
+            <?php endif;?>
         </div>
         <?php
-        $sections = get_post_meta( get_the_ID(), 'page_sections', true );
+        // Brand Section
+        if ( ! empty( $options['brand_section'] ) ) {
+            foreach ( $options['brand_section'] as $brand ) {
+                echo '<img src="' . esc_url( $brand['image'] ) . '">';
+            }
+        }
 
+        // Block Section
+        if ( ! empty( $options['block_section'] ) ) {
+            foreach ( $options['block_section'] as $block ) {
+                echo '<img src="' . esc_url( $block['image'] ) . '">';
+                echo '<h3>' . esc_html( $block['title'] ) . '</h3>';
+                echo '<p>' . esc_html( $block['content'] ) . '</p>';
+            }
+        }
+        $sections = get_post_meta( get_the_ID(), 'page_sections', true );
         if ( ! empty( $sections ) ) {
             foreach ( $sections as $section ) {
                 echo '<div class="custom-page-section">';

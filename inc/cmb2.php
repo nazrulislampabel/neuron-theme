@@ -42,60 +42,93 @@ function all_pages_repeater_field() {
         'type' => 'textarea_small',
     ) );
 }
-add_action( 'admin_menu', 'register_theme_options_menu_custom' );
 
-function register_theme_options_menu_custom() {
-    // Just a dummy page for parent
-    add_menu_page(
-        'Theme Options',
-        'Theme Options',
-        'manage_options',
-        'my_theme_options_parent',
-        '__return_null', // No content here
-        'dashicons-admin-generic',
-        60
-    );
-}
-add_action( 'cmb2_admin_init', 'register_intro_section_submenu_custom' );
+add_action( 'cmb2_admin_init', 'custom_theme_options' );
 
-function register_intro_section_submenu_custom() {
+function custom_theme_options() {
     $cmb = new_cmb2_box( array(
-        'id'           => 'intro_section_options',
-        'title'        => __( 'Intro Section', 'cmb2' ),
+        'id'           => 'theme_options_box',
+        'title'        => __( 'Theme Options', 'cmb2' ),
         'object_types' => array( 'options-page' ),
-        'option_key'   => 'intro_section_options', // database option name
-        'menu_title'   => 'Intro Section',
-        'parent_slug'  => 'my_theme_options_parent', // THIS makes it sub-menu under our custom menu
+        'option_key'   => 'theme_options',
     ) );
 
-    // Group Field (Repeater)
-    $group_field_id = $cmb->add_field( array(
-        'id'          => 'intro_sections',
+    // ✅ intro Section (Repeater)
+    $cmb->add_field( array(
+        'id'          => 'intro_section',
         'type'        => 'group',
-        'description' => __( 'Add items for the intro section', 'cmb2' ),
+        'description' => __( 'Add your intros here', 'cmb2' ),
         'options'     => array(
-            'group_title'   => __( 'Intro {#}', 'cmb2' ),
-            'add_button'    => __( 'Add Intro', 'cmb2' ),
-            'remove_button' => __( 'Remove Intro', 'cmb2' ),
+            'group_title'   => __( 'intro {#}', 'cmb2' ),
+            'add_button'    => __( 'Add Another intro', 'cmb2' ),
+            'remove_button' => __( 'Remove intro', 'cmb2' ),
             'sortable'      => true,
         ),
     ) );
 
-    $cmb->add_group_field( $group_field_id, array(
-        'name' => 'Image',
-        'id'   => 'section_image',
+    $cmb->add_group_field( 'intro_section', array(
+        'name' => 'intro Image',
+        'id'   => 'image',
         'type' => 'file',
     ) );
 
-    $cmb->add_group_field( $group_field_id, array(
-        'name' => 'Title',
-        'id'   => 'section_title',
+    $cmb->add_group_field( 'intro_section', array(
+        'name' => 'intro Title',
+        'id'   => 'title',
         'type' => 'text',
     ) );
 
-    $cmb->add_group_field( $group_field_id, array(
-        'name' => 'Content',
-        'id'   => 'section_content',
+    $cmb->add_group_field( 'intro_section', array(
+        'name' => 'intro Content',
+        'id'   => 'content',
+        'type' => 'textarea_small',
+    ) );
+
+    // ✅ Brand Section (Repeater)
+    $cmb->add_field( array(
+        'id'          => 'brand_section',
+        'type'        => 'group',
+        'description' => __( 'Add brand logos', 'cmb2' ),
+        'options'     => array(
+            'group_title'   => __( 'Brand {#}', 'cmb2' ),
+            'add_button'    => __( 'Add Brand', 'cmb2' ),
+            'remove_button' => __( 'Remove Brand', 'cmb2' ),
+            'sortable'      => true,
+        ),
+    ) );
+
+    $cmb->add_group_field( 'brand_section', array(
+        'name' => 'Brand Image',
+        'id'   => 'image',
+        'type' => 'file',
+    ) );
+
+    // ✅ Block Section (Repeater)
+    $cmb->add_field( array(
+        'id'          => 'block_section',
+        'type'        => 'group',
+        'description' => __( 'Add block items', 'cmb2' ),
+        'options'     => array(
+            'group_title'   => __( 'Block {#}', 'cmb2' ),
+            'sortable'      => false,
+        ),
+    ) );
+
+    $cmb->add_group_field( 'block_section', array(
+        'name' => 'Block Image',
+        'id'   => 'image',
+        'type' => 'file',
+    ) );
+
+    $cmb->add_group_field( 'block_section', array(
+        'name' => 'Block Title',
+        'id'   => 'title',
+        'type' => 'text',
+    ) );
+
+    $cmb->add_group_field( 'block_section', array(
+        'name' => 'Block Content',
+        'id'   => 'content',
         'type' => 'textarea_small',
     ) );
 }
