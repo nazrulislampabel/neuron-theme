@@ -7,7 +7,7 @@ $intros = get_post_meta( get_the_ID(), 'home_intro_box', true );
 $options = get_option( 'theme_options' );
 ?>
 <!-- ::::::::::::::::::::: start intro intro:::::::::::::::::::::::::: -->
-<intro class="intro-padding darker-bg">
+<section class="section-padding darker-bg">
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8">
@@ -36,43 +36,6 @@ $options = get_option( 'theme_options' );
             <?php endforeach; ?>
             <?php endif;?>
         </div>
-        <?php
-        // Brand Section
-        if ( ! empty( $options['brand_section'] ) ) {
-            foreach ( $options['brand_section'] as $brand ) {
-                echo '<img src="' . esc_url( $brand['image'] ) . '">';
-            }
-        }
-
-        // Block Section
-        if ( ! empty( $options['block_section'] ) ) {
-            foreach ( $options['block_section'] as $block ) {
-                echo '<img src="' . esc_url( $block['image'] ) . '">';
-                echo '<h3>' . esc_html( $block['title'] ) . '</h3>';
-                echo '<p>' . esc_html( $block['content'] ) . '</p>';
-            }
-        }
-        $sections = get_post_meta( get_the_ID(), 'page_sections', true );
-        if ( ! empty( $sections ) ) {
-            foreach ( $sections as $section ) {
-                echo '<div class="custom-page-section">';
-
-                if ( ! empty( $section['section_image'] ) ) {
-                    echo '<img src="' . esc_url( $section['section_image'] ) . '" alt="">';
-                }
-
-                if ( ! empty( $section['section_title'] ) ) {
-                    echo '<h2>' . esc_html( $section['section_title'] ) . '</h2>';
-                }
-
-                if ( ! empty( $section['section_content'] ) ) {
-                    echo '<p>' . esc_html( $section['section_content'] ) . '</p>';
-                }
-
-                echo '</div>';
-            }
-        }
-        ?>
     </div>
-</intro><!-- intro area end -->
+</section><!-- intro area end -->
 
