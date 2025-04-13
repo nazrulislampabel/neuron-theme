@@ -26,7 +26,7 @@ if ( ! empty( $options['single_block_image'] ) ) {
             </div>
             <div class="col-md-6">
                 <div class="block-img">
-                    <img src="<?php echo $block_img ? $block_img : get_template_directory_uri() . '/assets/img/homepageblock.jpg'; ?>" alt="" />
+                    <img src="<?php echo $block_img ? : get_template_directory_uri() . '/assets/img/homepageblock.jpg'; ?>" alt="" />
                 </div>
             </div>
         </div>

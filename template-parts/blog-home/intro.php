@@ -3,7 +3,6 @@
  * Template Name: Pricing Table
  */
 
-$intros = get_post_meta( get_the_ID(), 'home_intro_box', true );
 $options = get_option( 'theme_options' );
 ?>
 <!-- ::::::::::::::::::::: start intro intro:::::::::::::::::::::::::: -->

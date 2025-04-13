@@ -352,16 +352,6 @@ ul.cart-list>li.total>a.btn:hover {
 
 
 /* ================ Slider area ================== */
-
-.slider-bg1{
-	background: url("/assets/img/slider-bg/1.jpg") no-repeat;
-}
-.slider-bg2{
-	background: url("/assets/img/slider-bg/2.jpg") no-repeat;
-}
-.slider-bg3{
-	background: url("/assets/img/slider-bg/3.jpg") no-repeat;
-}
 .homepage-slider{
 	width: 100%;
 	height: 850px;
@@ -611,7 +601,7 @@ ul.cart-list>li.total>a.btn:hover {
 	margin-bottom: 50px;
 	overflow: hidden;
 }
-.services-tiem img{
+.services-tiem i{
 	float: left;
 	margin-right: 25px;
 	padding-left: 5px;
