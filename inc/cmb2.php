@@ -132,4 +132,64 @@ function custom_theme_options() {
         'type' => 'textarea_small',
         'desc' => 'Add Single Service content'
     ) );
+
+}
+add_action('cmb2_admin_init', 'newsletter_footer_options');
+function newsletter_footer_options() {
+    $options = new_cmb2_box(array(
+        'id'           => 'newsletter_options',
+        'title'        => __('Newsletter Settings', 'cmb2'),
+        'object_types' => array('options-page'),
+        'option_key'   => 'newsletter_footer_options',
+        'icon_url'     => 'dashicons-email-alt2',
+    ));
+
+    $options->add_field(array(
+        'name' => 'Title',
+        'id'   => 'newsletter_title',
+        'type' => 'text',
+        'default' => 'NewsLetter Subscription',
+    ));
+
+    $options->add_field(array(
+        'name' => 'Subtitle',
+        'id'   => 'newsletter_subtitle',
+        'type' => 'textarea_small',
+        'default' => 'Subscribe to get the latest news, update and offer information. Don\'t worry, we won\'t send spam!',
+    ));
+
+    $options->add_field(array(
+        'name' => 'Email Placeholder',
+        'id'   => 'newsletter_placeholder',
+        'type' => 'text',
+        'default' => 'Your Email Please!',
+    ));
+    $cmb = new_cmb2_box(array(
+        'id'           => 'about_us_footer_box',
+        'title'        => __('About Us Footer Widget Settings', 'cmb2'),
+        'object_types' => array('options-page'),
+        'option_key'   => 'about_us_footer_options',
+        'icon_url'     => 'dashicons-admin-site-alt3',
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Logo',
+        'id'   => 'about_us_logo',
+        'type' => 'file',
+        'options' => array('url' => false),
+        'text' => array('add_upload_file_text' => 'Upload Logo'),
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Description',
+        'id'   => 'about_us_description',
+        'type' => 'textarea_small',
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Card Images',
+        'id'   => 'about_us_cards',
+        'type' => 'file_list',
+        'preview_size' => array(50, 50),
+    ));
 }

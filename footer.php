@@ -1,19 +1,30 @@
 
 <!-- ::::::::::::::::::::: Footer Section:::::::::::::::::::::::::: -->
 <footer>
+    <?php
+    $footer = get_option('neuron_option');
+    $logo = $footer['footer_logo']['url'] ?? '';
+    $content = $footer['footer_content'] ?? '';
+    $cards = $footer['footer_card'] ?? '';
+    $copyright = $footer['footer_copyright'] ?? '';
+    ?>
 	<div class="primary-footer">
 		<div class="container">
 			<div class="row">
 				<!-- start single footer widget -->
 				<div class="col-sm-6 col-md-4">
 					<div class="footer-widget about-us">
-						<a href="markup/index.html"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-white.png" alt="" /></a>
-						<p>Collaboratively create resource sucking manufactured products and worldwide e-services. Seamlessly revol tionize holistic data rather than intermandated results. Energistically innovate open-source systems for performance based total.</p>
-						<div class="online-card">
-							<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/online-card/1.png" alt="" /></a>
-							<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/online-card/2.png" alt="" /></a>
-							<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/online-card/3.png" alt="" /></a>
-							<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/online-card/4.png" alt="" /></a>
+
+                        <a href="<?php echo home_url()?>"><img src="<?php echo esc_url($logo); ?>" alt="" /></a>
+<p>
+    <?php echo esc_html($footer['footer_content'])?>
+</p>						<div class="online-card">
+                            <?php
+                            if (!empty($cards)):?>
+                            <?php foreach ($cards as $card):?>
+                                <a href="<?php echo esc_url($card['url']); ?>"><img src="<?php echo esc_url($card['image']); ?>" alt="" /></a>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
 						</div>
 					</div>
 				</div><!-- end single footer widget -->
@@ -23,14 +34,13 @@
 					<div class="footer-widget usefull-link">
 						<h3>Useful Links</h3>
 						<ul>
-							<li><a href="#"><i class="fa fa-angle-right"></i>About Us</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Services</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Works</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Contact</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Support</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Privacy Policy</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i>Blog</a></li>
-						</ul>
+                            <?php wp_nav_menu( array(
+                                'location'        => 'footer-link',
+                                'menu_id'         => 'footer-link',
+                                'walker'         => new Footer_Link_Walker()
+                            ) );
+                            ?>
+                        </ul>
 					</div>
 				</div><!-- end single footer widget -->
 
@@ -38,48 +48,53 @@
 				<div class="col-sm-6 col-md-3">
 					<div class="footer-widget latest-post">
 						<h3>Latest Post</h3>
-						<ul>
-							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-post/1.png" alt="" />
-								<p><a href="#">Headset No Longer Wire For Sound</a></p>
-								<span>12 May 2016</span>
-
-							</li>
-							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-post/2.png" alt="" />
-								<p><a href="#">Headset No Longer Wire For Sound</a></p>
-								<span>12 May 2016</span>
-
-							</li>
-							<li>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/img/latest-post/3.png" alt="" />
-								<p><a href="#">Headset No Longer Wire For Sound</a></p>
-								<span>12 May 2016</span>
-
-							</li>
-
-						</ul>
+                        <ul>
+                        <?php
+                        $neuron_latest_post = new WP_Query(array(
+                            'posts_per_page'=>'3',
+                        ));
+                        while ($neuron_latest_post->have_posts()){
+                            $neuron_latest_post->the_post();
+                        ?>
+                            <li>
+                                <?php the_post_thumbnail('neuron-small'); ?>
+                                <p><a href="<?php the_permalink(); ?>"><?php the_title()?></a></p>
+                                <span><?php echo get_the_date() ?></span>
+                            </li>
+                            <?php
+                            wp_reset_postdata();
+                        }?>
+                        </ul>
 					</div>
 				</div><!-- end single footer widget -->
 
 				<!-- start single footer widget -->
 				<div class="col-sm-6 col-md-3">
-					<div class="footer-widget news-letter">
-						<h3>NewsLetter Subscription</h3>
-						<p>Subscribe to get the latest news, update and offer information. Don't worry, we won't send spam!</p>
+                    <?php
+                    $newsletter = get_option('newsletter_footer_options');
+                    $title       = $newsletter['newsletter_title'] ?? 'NewsLetter Subscription';
+                    $subtitle    = $newsletter['newsletter_subtitle'] ?? 'Subscribe to get the latest news, update and offer information. Don\'t worry, we won\'t send spam!';
+                    $placeholder = $newsletter['newsletter_placeholder'] ?? 'Your Email Please!';
+                    ?>
 
-						<form class="subscribe-form mailchimp" method="post">
-							<div class="clearfix">
-								<div class="input-wrapper">
-									<label class="sr-only" for="email">Email</label>
-									<input id="subscribeEmail" type="email" name="subscribeEmail" class="validate form-control" placeholder="Your Email Please!">
-									<button type="submit"><i class="fa fa-arrow-circle-right"></i></button>
-								</div>
-							</div>
-							<!-- to showing success messages -->
-							<p class="subscription-success"></p>
-						</form>
-					</div><!-- /.news-letter -->
+                    <div class="footer-widget news-letter">
+                        <h3><?php echo esc_html($title); ?></h3>
+                        <p><?php echo esc_html($subtitle); ?></p>
+
+                        <form class="subscribe-form mailchimp" method="post">
+                            <div class="clearfix">
+                                <div class="input-wrapper">
+                                    <label class="sr-only" for="subscribeEmail">Email</label>
+                                    <input id="subscribeEmail" type="email" name="subscribeEmail" class="validate form-control" placeholder="<?php echo esc_attr($placeholder); ?>">
+                                    <button type="submit"><i class="fa fa-arrow-circle-right"></i></button>
+                                </div>
+                            </div>
+                            <!-- to showing success messages -->
+                            <p class="subscription-success"></p>
+                        </form>
+                    </div>
+
+                    <!-- /.news-letter -->
 				</div><!-- end single footer widget -->
 			</div><!-- /.row -->
 		</div><!-- /.container -->
@@ -90,7 +105,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<p>Copyright@2017 Neuron Finance Inc. All Rights Reserved. Beautiful WordPress Theme By <a href="#">TrendyTheme</a></p>
+					<p><?php echo esc_html($footer['footer_copyright'])?></p>
 				</div>
 			</div><!-- /.row -->
 		</div><!-- /.container -->

@@ -20,10 +20,11 @@ function neuron_theme_setup() {
         'comment-list'
     ) );
     add_theme_support( 'custom-logo' );
+    add_image_size('neuron-small',70,70,true);
     register_nav_menu( 'primary', esc_html__( 'Main Menu', 'neuron' ) );
+    register_nav_menu( 'footer-link', esc_html__( 'Footer Menu', 'neuron' ) );
 }
 add_action( 'after_setup_theme', 'neuron_theme_setup' );
-
 function neuron_theme_files() {
     wp_enqueue_style( 'animate', get_template_directory_uri().'/assets/css/animate.min.css',null,'1.0');
     wp_enqueue_style( 'fonts', get_template_directory_uri().'/assets/fonts/font-awesome/css/font-awesome.min.css',null,'1.0');
@@ -70,4 +71,26 @@ function neuron_logo($ownLogo) {
 }
 add_filter( 'get_custom_logo', 'neuron_logo' );
 
+// Footer Wordpress Menu modification
+class Footer_Link_Walker extends Walker_Nav_Menu {
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        $icon_html = '<i class="fa fa-angle-right"></i>'; // এখানে আপনার পছন্দের আইকন দিন
 
+        $output .= '<li class="menu-item">';
+        $output .= '<a href="' . esc_url( $item->url ) . '">'
+            . $icon_html . ' ' . esc_html( $item->title ) . '</a>';
+        $output .= '</li>';
+    }
+}
+function neuron_widget(){
+register_sidebar(array(
+    'name'          => __( 'Footer Sidebar', 'neuron' ),
+    'id'            => 'footer-about',
+    'description'   => __( 'Widgets ', 'neuron' ),
+    'before_widget' => '<li id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</li>',
+    'before_title'  => '<h2 class="widgettitle">',
+    'after_title'   => '</h2>',
+));
+}
+add_action("widgets_init","neuron_widget");

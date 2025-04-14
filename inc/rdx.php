@@ -35,3 +35,73 @@ Redux::set_section( $opt_name, array(
         ),
     )
 ));
+// Footer Main Section
+Redux::set_section( $opt_name, array(
+    'title'    => 'Footer',
+    'id'       => 'footer_section',
+    'icon'     => 'el-icon-cogs',
+    'heading'  => 'Expanded New Section Title',
+    'desc'     => '<br />This is the section description. HTML is permitted.<br />',
+    'fields'   => array(
+        array(
+            'id'    => '',
+            'type'  => 'text',
+            'title' => 'A sample text box',
+        ),
+    ),
+) );
+
+// Footer About Subsection
+Redux::set_section( $opt_name, array(
+    'title'       => 'Footer About',
+    'id'          => 'footer_about',
+    'subsection'  => true,
+    'icon'        => 'el el-plus',
+    'heading'     => 'Expanded New Section Title',
+    'desc'        => '<br />This is the section description. HTML is permitted.<br />',
+    'fields'      => array(
+        array(
+            'id'    => 'footer_logo',
+            'type'  => 'media',
+            'title' => 'Logo',
+        ),
+        array(
+            'id'    => 'footer_content',
+            'type'  => 'textarea',
+            'title' => 'Footer Content',
+        ),
+        array(
+            'id'       => 'footer_card',
+            'type'     => 'slides',
+            'title'    => __( 'Footer Card', 'neuron' ),
+            'subtitle' => __( 'Upload images and enter details for the slider', 'neuron' ),
+            'desc'     => __( 'Each slide can have an image, title, description, and a button.', 'neuron' ),
+            'placeholder' => array(
+                'title'       => __( 'Slide Title', 'neuron' ),
+                'description' => __( 'Slide Description', 'neuron' ),
+                'url'         => __( 'Button URL', 'neuron' ),
+            ),
+            'show' => array(
+                'title'       => false,
+                'description' => false,
+                'url'         => true,
+            ),
+        ),
+    ),
+) );
+Redux::set_section( $opt_name, array(
+    'title'       => 'Footer Copyright',
+    'subsection'  => true,
+    'icon'        => 'el el-minus',
+    'heading'     => 'Expanded New Section Title',
+    'desc'        => '<br />This is the section description. HTML is permitted.<br />',
+    'fields'      => array(
+        array(
+            'id'    => 'footer_copyright',
+            'type'  => 'text',
+            'title' => 'Copyright',
+        ),
+    ),
+) );
+
+
