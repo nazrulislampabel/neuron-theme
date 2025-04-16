@@ -9,30 +9,31 @@
 <header>
 	<!-- start top bar -->
 	<div class="header-top-area">
+        <?php
+        $header = get_option('neuron_option');
+        $head_social = get_option('neuron_option')['social_links_slide'];
+        ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-8 hidden-xs">
 					<div class="contact">
 						<p>
 							<i class="fa fa-phone"></i>
-							+880 123 456 789
+							<?php echo esc_html($header['contact_number'])?>
 						</p>
 						<p>
 							<i class="fa fa-envelope"></i>
-							<a href="#">24hrsuport@domain.com</a>
+							<a href="<?php echo home_url()?>"><?php echo esc_html($header['contact_number'])?></a>
 						</p>
 					</div><!-- /.contact -->
 				</div><!-- /.col-sm-8 -->
 
 				<div class="col-sm-4">
 					<div class="social-icon">
-						<ul>
-							<li><a href=""><i class="fa fa-facebook"></i></a></li>
-							<li><a href=""><i class="fa fa-twitter"></i></a></li>
-							<li><a href=""><i class="fa fa-linkedin"></i></a></li>
-							<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-							<li><a href=""><i class="fa fa-tumblr"></i></a></li>
-						</ul>
+                        <?php if (is_active_sidebar('header_social')) {
+                            dynamic_sidebar('header_social');
+                        }
+                        ?>
 					</div><!-- /.social-icon -->
 				</div><!-- /.col-sm-4 -->
 			</div><!-- /.row -->

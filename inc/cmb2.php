@@ -164,32 +164,4 @@ function newsletter_footer_options() {
         'type' => 'text',
         'default' => 'Your Email Please!',
     ));
-    $cmb = new_cmb2_box(array(
-        'id'           => 'about_us_footer_box',
-        'title'        => __('About Us Footer Widget Settings', 'cmb2'),
-        'object_types' => array('options-page'),
-        'option_key'   => 'about_us_footer_options',
-        'icon_url'     => 'dashicons-admin-site-alt3',
-    ));
-
-    $cmb->add_field(array(
-        'name' => 'Logo',
-        'id'   => 'about_us_logo',
-        'type' => 'file',
-        'options' => array('url' => false),
-        'text' => array('add_upload_file_text' => 'Upload Logo'),
-    ));
-
-    $cmb->add_field(array(
-        'name' => 'Description',
-        'id'   => 'about_us_description',
-        'type' => 'textarea_small',
-    ));
-
-    $cmb->add_field(array(
-        'name' => 'Card Images',
-        'id'   => 'about_us_cards',
-        'type' => 'file_list',
-        'preview_size' => array(50, 50),
-    ));
 }

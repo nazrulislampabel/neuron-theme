@@ -5,6 +5,7 @@ if (class_exists('Attachments')){
 require_once get_theme_file_path('/inc/tgm.php');
 require_once get_theme_file_path('/inc/rdx.php');
 require_once get_theme_file_path('/inc/cmb2.php');
+require_once get_theme_file_path('/widgets/social-icons-widget.php');
 
 function neuron_theme_setup() {
     load_theme_textdomain( 'neuron', get_template_directory() . "/languages" );
@@ -83,14 +84,15 @@ class Footer_Link_Walker extends Walker_Nav_Menu {
     }
 }
 function neuron_widget(){
-register_sidebar(array(
-    'name'          => __( 'Footer Sidebar', 'neuron' ),
-    'id'            => 'footer-about',
+register_sidebar(
+    array(
+    'name'          => __( 'Header Social', 'neuron' ),
+    'id'            => 'header_social',
     'description'   => __( 'Widgets ', 'neuron' ),
-    'before_widget' => '<li id="%1$s" class="widget %2$s">',
-    'after_widget'  => '</li>',
-    'before_title'  => '<h2 class="widgettitle">',
-    'after_title'   => '</h2>',
+    'before_widget' => '',
+    'after_widget'  => '',
+    'before_title'  => '',
+    'after_title'   => '',
 ));
 }
 add_action("widgets_init","neuron_widget");

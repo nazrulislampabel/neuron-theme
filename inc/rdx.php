@@ -10,11 +10,33 @@ $theme = wp_get_theme(); // For use with some settings. Not necessary.
 $args = array(
     'display_name'         => $theme->get( 'Name' ),
     'display_version'      => $theme->get( 'Version' ),
-    'menu_title'           => esc_html__( 'Page section', 'neuron' ),
+    'menu_title'           => esc_html__( 'Home Page', 'neuron' ),
     'customizer'           => true,
 );
 
 Redux::set_args( $opt_name, $args );
+Redux::set_section( $opt_name, array(
+    'title'  => __( 'Header-top', 'neuron' ),
+    'id'     => 'header-top',
+    'desc'   => __( 'Manage your homepage top area', 'neuron' ),
+    'icon'   => 'el el-picture',
+    'fields' =>array(
+        array(
+            'id'       => 'contact_number',
+            'type'     => 'text',
+            'title'    => __('Phone', 'neuron'),
+            'default'  => '+880 123 456 789'
+        ),
+        array(
+            'id'       => 'contact_email',
+            'type'     => 'text',
+            'title'    => __('Contact Email', 'neuron'),
+            'validate' => 'email',
+            'msg'      => 'custom error message',
+            'default'  => 'test@test.com'
+        ),
+    ),
+));
 Redux::set_section( $opt_name, array(
     'title'  => __( 'Slider Settings', 'neuron' ),
     'id'     => 'slider_settings',
@@ -42,13 +64,6 @@ Redux::set_section( $opt_name, array(
     'icon'     => 'el-icon-cogs',
     'heading'  => 'Expanded New Section Title',
     'desc'     => '<br />This is the section description. HTML is permitted.<br />',
-    'fields'   => array(
-        array(
-            'id'    => '',
-            'type'  => 'text',
-            'title' => 'A sample text box',
-        ),
-    ),
 ) );
 
 // Footer About Subsection
