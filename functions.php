@@ -34,8 +34,8 @@ function neuron_theme_files() {
     wp_enqueue_style( 'bootstrap', get_template_directory_uri().'/assets/bootstrap/css/bootstrap.min.css',null,'1.0');
     wp_enqueue_style( 'neuron', get_template_directory_uri().'/assets/css/style.css',null,'1.0');
     wp_enqueue_style( 'neuron-css', get_stylesheet_uri());
-
-    //wp_enqueue_script( 'browser', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js', array('jquery'),'1.0',null);
+    //wp_enqueue_script( 'jquery' );
+    //wp_enqueue_script( 'browser', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js', array('jquery'),'1.0',null,);
     //wp_enqueue_script( 'maxcdn', 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js', array('jquery'),'1.0',null);
     wp_enqueue_script( 'bootstrap', get_template_directory_uri().'/assets/bootstrap/js/bootstrap.min.js', array('jquery'),'1.0',true);
     wp_enqueue_script( 'bootsnav', get_template_directory_uri().'/assets/js/bootsnav.js', array('jquery'),'1.0',true);
@@ -43,7 +43,7 @@ function neuron_theme_files() {
     wp_enqueue_script( 'wow', get_template_directory_uri().'/assets/js/wow.min.js', array('jquery'),'1.0',true);
     wp_enqueue_script( 'ajaxchimp', get_template_directory_uri().'/assets/js/ajaxchimp.js', array('jquery'),'1.0',true);
     wp_enqueue_script( 'ajaxchimp-config', get_template_directory_uri().'/assets/js/ajaxchimp-config.js', array('jquery'),'1.0',true);
-    wp_enqueue_script( 'script', get_template_directory_uri().'/assets/js/script.js', array('jquery'),'1.0',true);
+    wp_enqueue_script( 'script', get_template_directory_uri().'/assets/js/script.js', array('jquery'),time(),true);
 
 }
 add_action( 'wp_enqueue_scripts', 'neuron_theme_files' );

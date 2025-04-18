@@ -165,3 +165,53 @@ function newsletter_footer_options() {
         'default' => 'Your Email Please!',
     ));
 }
+
+//About Page Meta box
+
+add_action( 'cmb2_admin_init', 'about_page_metabox' );
+function about_page_metabox() {
+    $cmb = new_cmb2_box( array(
+        'id'           => 'accordion',
+        'title'        => 'About Page Fields',
+        'object_types' => array( 'page' ),
+        'show_on'      => array(
+            'key' => 'id',
+            'value' => 39
+        ),
+    ) );
+
+    $cmb->add_field( array(
+        'name' => 'Accordion box',
+        'id'   => 'accordion_box',
+        'type' => 'group',
+        'options' => array(
+            'add_button'    => __( 'Add Accordion', 'cmb2' ),
+            'remove_button' => __( 'Remove Accordion', 'cmb2' ),
+            'sortable'      => true,
+            'closed'        => true,
+        ),
+    ) );
+
+    $cmb->add_group_field('accordion_box', array(
+        'name' => 'Accordion Title',
+        'id'   => 'accordion_title', // ✅ underscore দিয়ে ID
+        'type' => 'text',
+    ));
+
+
+    $cmb->add_group_field('accordion_box', array(
+        'name' => 'Accordion content',
+        'id'   => 'accordion_content',
+        'type' => 'textarea_small',
+    ) );
+    $cmb->add_field( array(
+        'name' => 'Accordion heading',
+        'id'   => 'accordion_heading',
+        'type' => 'text',
+    ) );
+    $cmb->add_field( array(
+        'name' => 'Accordion Sub Heading',
+        'id'   => 'accordion_sub_heading',
+        'type' => 'textarea_small',
+    ) );
+}

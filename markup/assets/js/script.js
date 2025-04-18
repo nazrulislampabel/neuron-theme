@@ -79,9 +79,6 @@
 
 			/* ======= Pre Loader ======= */
 			$('#loading').fadeOut();
-
-
-
 	        /* ======= Contact Form ======= */
 	        $('#contactForm').on('submit',function(e){
 

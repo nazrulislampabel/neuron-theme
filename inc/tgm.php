@@ -69,8 +69,8 @@ function neuron_register_required_plugins() {
             'required' => false,
         ),
         array(
-            'name'        => 'CMB2',
-            'slug'        => 'cmb2',
+            'name'        => 'Breadcrumb NavXT',
+            'slug'        => 'breadcrumb-navxt',
             'required' => false,
         ),
 

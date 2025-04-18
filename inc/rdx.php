@@ -119,4 +119,12 @@ Redux::set_section( $opt_name, array(
     ),
 ) );
 
-
+Redux::set_field( $opt_name, 'header-top', array(
+    'id'=>'multi-text',
+    'type' => 'multi_text',
+    'title' => esc_html__('Multi Text Option - Color Validated', 'your-textdomain-here'),
+    'validate' => 'color',
+    'subtitle' => esc_html__('If you enter an invalid color it will be removed. Try using the text "blue" as a color.  ;)', 'your-textdomain-here'),
+    'desc' => esc_html__('This is the description field, again good for additional info.', 'your-textdomain-here')
+),
+);

@@ -23,8 +23,8 @@
 	// document ready function
 	// ============================================
     jQuery(document).ready(function ($) {
-        
-		
+
+
 		// owl carouse
 			$('.all-client-logo').owlCarousel({
 				items:5,
@@ -79,10 +79,39 @@
 
 			/* ======= Pre Loader ======= */
 			$('#loading').fadeOut(22);
+		$(document).ready(function(){
+			$("button").click(function(){
+				$("p").hide();
+			});
+		});
 
+		/* ======= Field Title Update ======= */
+		function updateAccordionTitles() {
+			$('.cmb-repeatable-group').each(function () {
+				$(this).find('.cmb-repeat-group-wrap').each(function () {
+					var titleField = $(this).find('input[name*="[accordion_title]"]').val();
+					if (titleField) {
+						$(this).find('.cmb-group-title').text(titleField);
+					}
+				});
+			});
+		}
 
+		$(document).ready(function () {
+			updateAccordionTitles();
 
-	        /* ======= Contact Form ======= */
+			// টাইটেল চেঞ্জ হলে লাইভ আপডেট
+			$(document).on('keyup change', 'input[name*="[accordion_title]"]', function () {
+				updateAccordionTitles();
+			});
+
+			// নতুন group অ্যাড হলে
+			$(document).on('cmb2_add_group_row', function () {
+				setTimeout(updateAccordionTitles, 100);
+			});
+		});
+
+		/* ======= Contact Form ======= */
 	        $('#contactForm').on('submit',function(e){
 
 	            e.preventDefault();

@@ -826,6 +826,50 @@ ul.cart-list>li.total>a.btn:hover {
 .accordian-right-content h2{
 	margin-bottom: 13px;
 }
+/* Accordion Styles */
+.accordion {
+	width: 100%;
+	max-width: 500px;
+	margin: 20px auto;
+}
+
+.accordion-button {
+	background-color: #f1f1f1;
+	color: #333;
+	padding: 15px;
+	width: 100%;
+	text-align: left;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.accordion-button:hover {
+	background-color: #ddd;
+}
+
+.accordion-content {
+	padding: 15px;
+	display: none;
+	border-top: 1px solid #ddd;
+	background-color: #f9f9f9;
+}
+
+.active .accordion-content {
+	display: block;
+}
+
+.active .accordion-button:after {
+	content: '\f077'; /* FontAwesome "minus" symbol */
+	font-weight: 900;
+	margin-left: 10px;
+}
+
+.accordion-button:after {
+	content: '\f078'; /* FontAwesome "plus" symbol */
+	font-weight: 900;
+	margin-left: 10px;
+}
 
 /* ================ Portfolio section ================== */
 .portfolio-item{
