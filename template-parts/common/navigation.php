@@ -39,8 +39,8 @@
         <?php
         $neuron_menu =
             wp_nav_menu( array(
-	        'location'        => 'topmenu',
-	        'menu_id'         => 'topmenu',
+	        'theme_location'        => 'primary',
+	        'menu_id'         => 'primary',
 	        'container_id'    => 'navbar-menu',
 	        'container_class' => 'collapse navbar-collapse',
 	        'menu_class'      => 'nav navbar-nav navbar-right',

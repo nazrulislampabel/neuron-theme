@@ -35,7 +35,7 @@
 						<h3>Useful Links</h3>
 						<ul>
                             <?php wp_nav_menu( array(
-                                'location'        => 'footer-link',
+                                'theme_location'        => 'footer-link',
                                 'menu_id'         => 'footer-link',
                                 'walker'         => new Footer_Link_Walker()
                             ) );

@@ -21,7 +21,9 @@ function neuron_theme_setup() {
         'comment-list'
     ) );
     add_theme_support( 'custom-logo' );
+    add_image_size('neuron-square',360,250,true);
     add_image_size('neuron-small',70,70,true);
+    add_image_size('neuron-large',1140,530,true);
     register_nav_menu( 'primary', esc_html__( 'Main Menu', 'neuron' ) );
     register_nav_menu( 'footer-link', esc_html__( 'Footer Menu', 'neuron' ) );
 }
@@ -43,6 +45,7 @@ function neuron_theme_files() {
     wp_enqueue_script( 'wow', get_template_directory_uri().'/assets/js/wow.min.js', array('jquery'),'1.0',true);
     wp_enqueue_script( 'ajaxchimp', get_template_directory_uri().'/assets/js/ajaxchimp.js', array('jquery'),'1.0',true);
     wp_enqueue_script( 'ajaxchimp-config', get_template_directory_uri().'/assets/js/ajaxchimp-config.js', array('jquery'),'1.0',true);
+    wp_enqueue_script( 'ajaxchimp-comment', get_template_directory_uri().'/assets/js/ajax-comment.js', array('jquery'),'1.0',true);
     wp_enqueue_script( 'script', get_template_directory_uri().'/assets/js/script.js', array('jquery'),time(),true);
 
 }
@@ -96,3 +99,46 @@ register_sidebar(
 ));
 }
 add_action("widgets_init","neuron_widget");
+
+
+function neuron_custom_excerpt_length( $length ) {
+    return 30;
+}
+add_filter( 'excerpt_length', 'neuron_custom_excerpt_length' );
+
+
+function neuron_excerpt_more( $more ) {
+    return '...';
+}
+add_filter( 'excerpt_more', 'neuron_excerpt_more' );
+
+//comment section
+function custom_comments_markup($comment, $args, $depth) {
+    ?>
+    <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+        <div class="comment-inner">
+            <div class="comment-avatar">
+                <?php echo get_avatar($comment, 64); ?>
+            </div>
+            <div class="comment-section">
+                <header>
+                    <h2><?php comment_author(); ?></h2>
+                    <span><?php echo human_time_diff(get_comment_time('U'), current_time('timestamp')) . ' ago'; ?></span>
+                </header>
+                <div class="comment-content">
+                    <?php comment_text(); ?>
+                    <?php
+                    comment_reply_link(array_merge($args, array(
+                        'reply_text' => 'Replay',
+                        'depth' => $depth,
+                        'max_depth' => $args['max_depth']
+                    )));
+                    ?>
+                </div>
+            </div>
+        </div>
+    </li>
+    <?php
+}
+
+

@@ -57,7 +57,7 @@ $neuron_posts = new WP_Query(array(
                         <div class="blog-item">
                             <!-- blog thumbnail -->
                             <div class="blog-thumb">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/img/blog/1.jpg" alt="" />
+                                <?php the_post_thumbnail('neuron-square')?>
                             </div>
                             <div class="blog-content">
                                 <!-- blog title -->
@@ -73,7 +73,6 @@ $neuron_posts = new WP_Query(array(
                                             <?php
                                             endforeach;
                                             else :
-                                                // 👉 ট্যাগ না থাকলে ডিফল্ট একটা ট্যাগ দেখাও
                                                 ?>
                                                 <li><a href="#">Uncategorized</a></li>
                                             <?php endif; ?>
@@ -87,9 +86,10 @@ $neuron_posts = new WP_Query(array(
 
                                 <!-- blog content -->
                                 <div class="entry-content">
-                                    <?php echo get_the_excerpt();?>
-                                    <a href="<?php the_permalink();?>"><?php echo __("Read More",'neuron')?></a>
+                                    <?php the_excerpt(); ?>
+                                    <a href="<?php the_permalink(); ?>"><?php echo __("Read More", 'neuron'); ?></a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
