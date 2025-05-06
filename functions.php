@@ -78,7 +78,7 @@ add_filter( 'get_custom_logo', 'neuron_logo' );
 // Footer Wordpress Menu modification
 class Footer_Link_Walker extends Walker_Nav_Menu {
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-        $icon_html = '<i class="fa fa-angle-right"></i>'; // এখানে আপনার পছন্দের আইকন দিন
+        $icon_html = '<i class="fa fa-angle-right"></i>';
 
         $output .= '<li class="menu-item">';
         $output .= '<a href="' . esc_url( $item->url ) . '">'

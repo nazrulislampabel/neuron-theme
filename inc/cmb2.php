@@ -215,3 +215,36 @@ function about_page_metabox() {
         'type' => 'textarea_small',
     ) );
 }
+
+//service page box
+
+function service_block_metabox(){
+        $cmb = new_cmb2_box( array(
+            'id'           => 'service_metabox',
+            'title'        => __('Service Details', 'cmb2'),
+            'object_types' => array('page'), // For pages
+            'show_on'      => array(
+                'key' => 'id',
+                'value' => 41
+            ),
+        ) );
+        //service page block
+        $cmb->add_field( array(
+            'name' => 'Block Image',
+            'id'   => 'service_block_image',
+            'type' => 'file',
+        ) );
+
+        $cmb->add_field( array(
+            'name' => 'Block Title',
+            'id'   => 'service_block_title',
+            'type' => 'text',
+        ) );
+
+        $cmb->add_field( array(
+            'name' => 'Block Content',
+            'id'   => 'service_block_content',
+            'type' => 'textarea_small',
+        ) );
+}
+add_action('cmb2_admin_init','service_block_metabox');
