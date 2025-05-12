@@ -64,6 +64,11 @@ function neuron_register_required_plugins() {
 			'required' => false,
 		),
         array(
+            'name'        => 'ACF',
+            'slug'        => 'advanced-custom-fields',
+            'required' => false,
+        ),
+        array(
             'name'        => 'CMB2',
             'slug'        => 'cmb2',
             'required' => false,
@@ -71,6 +76,16 @@ function neuron_register_required_plugins() {
         array(
             'name'        => 'Breadcrumb NavXT',
             'slug'        => 'breadcrumb-navxt',
+            'required' => false,
+        ),
+        array(
+            'name'        => 'Custom Post Type UI',
+            'slug'        => 'custom-post-type-ui',
+            'required' => false,
+        ),
+        array(
+            'name'        => 'Contact From 7',
+            'slug'        => 'contact-form-7',
             'required' => false,
         ),
 

@@ -194,7 +194,7 @@ function about_page_metabox() {
 
     $cmb->add_group_field('accordion_box', array(
         'name' => 'Accordion Title',
-        'id'   => 'accordion_title', // ✅ underscore দিয়ে ID
+        'id'   => 'accordion_title',
         'type' => 'text',
     ));
 
@@ -248,3 +248,62 @@ function service_block_metabox(){
         ) );
 }
 add_action('cmb2_admin_init','service_block_metabox');
+
+add_action('cmb2_admin_init', 'portfolio_custom_fields');
+function portfolio_custom_fields() {
+    $cmb = new_cmb2_box(array(
+        'id'            => 'portfolio_metabox',
+        'title'         => __('Portfolio Info', 'neuron'),
+        'object_types'  => array('portfolio'), // CPT target
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Portfolio Image',
+        'id'   => 'portfolio_img',
+        'type' => 'file',
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Author Name',
+        'id'   => 'portfolio_author',
+        'type' => 'text',
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Client Name',
+        'id'   => 'client_name',
+        'type' => 'text',
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Client Designation',
+        'id'   => 'client_designation',
+        'type' => 'text',
+    ));
+    $cmb->add_field(array(
+        'name' => 'Completed Date',
+        'id'   => 'completed_date',
+        'type' => 'text_date',
+    ));
+    $cmb->add_field(array(
+        'name' => 'Skills',
+        'id'   => 'skills',
+        'type' => 'text',
+    ));
+    $cmb->add_field(array(
+        'name' => 'Website Url',
+        'id'   => 'web_url',
+        'type' => 'text_url',
+    ));
+    $cmb->add_field(array(
+        'name' => 'Website Type',
+        'id'   => 'web_type',
+        'type' => 'text',
+    ));
+    $cmb->add_field(array(
+        'name' => 'Client Feedback',
+        'id'   => 'client_fdb',
+        'type' => 'textarea_small',
+    ));
+}
+
